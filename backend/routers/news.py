@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from services.news import fetch_news
 
 router = APIRouter()
@@ -8,6 +8,6 @@ router = APIRouter()
 def get_news(symbol: str, limit: int = 10):
     try:
         data = fetch_news(symbol, limit)
-        return {"symbol": symbol.upper(), "news": data}
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+    except Exception:
+        data = []  # On any error, return empty list instead of failing the request.
+    return {"symbol": symbol.upper(), "news": data}
