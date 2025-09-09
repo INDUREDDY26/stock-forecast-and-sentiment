@@ -6,3 +6,4 @@ numpy<2
 prophet==1.1.5
 vaderSentiment
 requests
+cmdstanpy<1.2
